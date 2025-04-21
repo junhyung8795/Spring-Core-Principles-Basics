@@ -10,7 +10,7 @@ public class MemberServiceImpl implements MemberService {
     //멤버서비스는 멤버리포지토리를 의존한다. 구현체를 넣어줘야 한다.
     private final MemberRepository memberRepository;
 
-    @Autowired
+    @Autowired //의존관계 주입을 설정파일에선 다 명시해줬지만 여기선 클래스 파일안에서 직접 해줘야 한다.
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
