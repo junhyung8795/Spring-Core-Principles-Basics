@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("componentTest")
 public class OrderServiceImpl implements OrderService {
     //두 개가 필요함
     private final MemberRepository memberRepository;
