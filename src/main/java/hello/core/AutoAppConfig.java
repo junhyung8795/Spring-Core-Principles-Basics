@@ -27,7 +27,7 @@ public class AutoAppConfig {
         return new MemoryMemberRepository();
     }
 
-    @Bean(name = "memberServiceImpl")
+    @Bean(name = "memberServiceImpl2")
     MemberService memberService() {
         return new MemberServiceImpl(memberRepository());
     }
