@@ -11,14 +11,27 @@ import org.springframework.stereotype.Component;
 @Component("componentTest")
 public class OrderServiceImpl implements OrderService {
     //두 개가 필요함
-    private final MemberRepository memberRepository;
-    private final DiscountPolicy discountPolicy;
+    @Autowired private MemberRepository memberRepository;
+    @Autowired private DiscountPolicy discountPolicy;
+    //위 코드는 필드 주입으로 스프링 빈을 의존관계를 주입한 것.
 
-    @Autowired//의존관계 주입을 설정파일에선 다 명시해줬지만 여기선 클래스 파일안에서 직접 해줘야 한다.
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
+//    @Autowired(required = false)
+//    public void setMemberRepository(MemberRepository memberRepository) {
+//        this.memberRepository = memberRepository;
+//        System.out.println("세터 주입 memberRepository = " + memberRepository);
+//    }
+//
+//    @Autowired
+//    public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+//        System.out.println("세터 주입 discountPolicy = " + discountPolicy);
+//        this.discountPolicy = discountPolicy;
+//    }
+//    @Autowired//의존관계 주입을 설정파일에선 다 명시해줬지만 여기선 클래스 파일안에서 직접 해줘야 한다.
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+//        System.out.println("orderservice에 생성자 주입");
+//        this.memberRepository = memberRepository;
+//        this.discountPolicy = discountPolicy;
+//    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
@@ -31,7 +44,9 @@ public class OrderServiceImpl implements OrderService {
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
 
+    //필드 주입으로 잘 들어갔는 테스트 용도
     public MemberRepository getMemberRepository() {
         return memberRepository;
     }
+
 }

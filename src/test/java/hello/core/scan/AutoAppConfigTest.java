@@ -1,8 +1,11 @@
 package hello.core.scan;
 
 import hello.core.AutoAppConfig;
+import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
+import hello.core.order.OrderService;
+import hello.core.order.OrderServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -18,5 +21,9 @@ public class AutoAppConfigTest {
         //그리고 긴 설정 파일에 개발자가 특정 빈을 누락하는 일도 없어진다.
         MemberService memberService = ac.getBean(MemberService.class);
         Assertions.assertThat(memberService).isInstanceOf(MemberService.class);
+
+        OrderServiceImpl orderService = ac.getBean(OrderServiceImpl.class);
+        MemberRepository memberRepository = orderService.getMemberRepository();
+        System.out.println("memberRepository = " + memberRepository);
     }
 }
